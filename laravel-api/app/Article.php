@@ -14,4 +14,9 @@ class Article extends Model
     protected $fillable = [
         'id', 'title', 'body',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

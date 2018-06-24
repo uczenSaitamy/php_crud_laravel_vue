@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+
+    protected function getArticles()
+    {
+        return Article::all();
+    }
+
+    protected function getArticleById($id)
+    {
+        return Article::where('id', '=', $id)->get();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        return $this->getArticles();
     }
 
     /**
@@ -35,18 +46,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::create($request->all());
+
+        return response()->json($article, 201);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \App\Article
      */
     public function show(Article $article)
     {
-        //
+        return $article;
     }
 
     /**
@@ -69,7 +82,9 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $article->update($request->all());
+
+        return response()->json($article, 200);
     }
 
     /**
@@ -80,6 +95,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return response()->json(null, 204);
     }
 }
