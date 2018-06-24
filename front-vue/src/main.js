@@ -5,6 +5,11 @@ import App from './App'
 import router from './router'
 import vueResource from 'vue-resource'
 
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default-dark.css'
+
+Vue.use(VueMaterial)
 Vue.config.productionTip = false
 Vue.use(vueResource);
 
